@@ -12,10 +12,17 @@ class ApplicationController < ActionController::API
         end
     end
 
-    def logged_in_user
+    def current_user
         if decode_token
             decode_token[0]['u_id']
         end
     end
 
+    def logged_in?
+        !!current_user
+    end
+
+    def authorized
+        render json:{result:'Error - Please log in.'}, status: :unauthorized unless logged_in?
+    end
 end
