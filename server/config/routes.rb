@@ -5,4 +5,10 @@ Rails.application.routes.draw do
     post '/login', to: 'users#login'
     get '/logout', to: 'users#logout'
   end
+  
+  scope '/tweet' do
+    post '/create', to: 'tweets#create'
+    get '/getmytweets', to: 'tweets#listtweets'
+    delete '/deletetweet/:id', to:'tweets#deletetweet' 
+  end
 end
