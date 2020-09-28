@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
     scope '/user' do
       post '/signup', to: 'users#create'
+      post '/confirmail', to: 'users#confirm_mail'
       post '/login', to: 'users#login'
       get '/logout', to: 'users#logout'
       get '/info', to: 'users#info'

@@ -6,6 +6,7 @@ import Main from './pages/Main';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import ConfirmMail from './pages/ConfirmMail';
 
 import config from './config.json';
 
@@ -53,6 +54,9 @@ function App() {
       <updateUserContext.Provider value={checkLoggedIn}>
         <Router>
           <Switch>
+            <Route path="/confirmail">
+              <ConfirmMail/>
+            </Route>
             <Route path="/login">
               {user.loggedIn? <Redirect to="/home"/> : <Login/>}
             </Route>

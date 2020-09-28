@@ -1,0 +1,39 @@
+#congrats-message{
+    width: 40vw;
+}
+
+#congrats-message a{
+    text-decoration: none;
+}
+
+#congrats-message img{
+    width: 200px;
+    padding-bottom: 20px;
+}
+
+@media (max-width: 650px){
+    #congrats-message{
+        width: 60vw;
+    }
+    #congrats-message img{
+        width: 150px;
+    }
+    #congrats-message h2{
+        font-size: 20px;
+    }
+    #congrats-message p{
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 450px){
+    #congrats-message{
+        width: 80vw;
+    }
+    #congrats-message h2{
+        font-size: 18px;
+    }
+    #congrats-message p{
+        font-size: 12px;
+    }
+}

@@ -1,9 +1,11 @@
 import React, { useCallback, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import config from '../config.json';
 
 import './Register.css';
 
 function Register(){
+    const history = useHistory();
     const [user, setUser]= useState({
         username: '',
         password: '',
@@ -38,8 +40,7 @@ function Register(){
             body: JSON.stringify({data: user})
         }).then(async (res)=>{
             if(res.status === 201){
-                //Enviar a pag de confirmar mail
-                //history.push('/home');
+                history.push('/confirmail?action=congrats');
             }else{
                 const response = await res.json();
                 if(response.username || response.mail){

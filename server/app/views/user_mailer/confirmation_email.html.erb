@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style type="text/css">
+        header{ display: flex; background: #303841; padding: 30px; }
+        header img {width:50%;}
+        .center{margin: auto;}
+        .dark-mode{background: #3a4750; color: white;}
+        .box{padding: 50px;}
+    </style>
+  </head>
+  <body>
+    <header>
+        <div class="center">
+            <img src="https://i.ibb.co/jZcf510/LOGO-VOLT.png" alt="LOGO-VOLT">
+        </div>
+    </header>
+    <div class="dark-mode box">
+        <h1>Welcome to VOLT, <%= @user.name %></h1>
+        <p>
+        You have successfully signed up to Volt,
+        your username is: <%= @user.username %>.<br>
+        </p>
+        <p>
+        In order to continue using Volt, you neeed to confirm your email by following <a href="<%= @url %>">this link</a>.
+        </p>
+
+        <p>
+        If that doesn't work, try follwing this link: <%= @url %> <br>
+        The link will expire in 24 hours.
+        </p>
+        <p>Thanks for joining and have a great day!</p>
+    </div>
+  </body>
+</html>

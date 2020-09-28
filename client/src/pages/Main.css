@@ -38,25 +38,6 @@
     color: #f6c90e;
 }
 
-.btn-alpha-op1{
-    color: #f6c90e;
-    padding-right: 3vw;
-    padding-left: 3vw;
-    border-color: #f6c90e;
-    border-radius: 20px;
-}
-
-.btn-alpha-op1:hover{
-    background: #f6c90e;
-    color: white;
-}
-
-.btn-op1{
-    background: #f6c90e;
-    color: white;
-    border-radius: 20px;
-}
-
 #b-login{
     position: relative;
     top: 2vh;

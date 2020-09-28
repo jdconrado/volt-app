@@ -10,10 +10,33 @@ class UsersController < ApplicationController
             password: userParams[:password]
         )
         if user.save
-            #Logica para enviar el correo de confirmación de cuenta
+            token = JWT.encode({u_id: user.id, exp: Time.now.to_i + 24 * 3600}, 'MAILS3CR3T', 'HS256') #MAILSECRET
+            url = 'http://localhost:3000/confirmail?action=confirm&tkn='+token
+            UserMailer.with(user: user, url: url).confirmation_email.deliver_later
             render json: {result:'success'}, status: :created
         else
             render json: user.errors, status: :unprocessable_entity
+        end
+    end
+
+    def confirm_mail
+        token = userParams[:confirmation_token]
+        if token
+            begin
+                decoded = JWT.decode(token, 'MAILS3CR3T', true, algorithm: 'HS256') #MAILSECRET
+                begin
+                    user = User.find(decoded[0]['u_id'])
+                    if user.update_column(:mail_confirmed, true)
+                        render json: {result:'success'}, status: :ok
+                    else
+                        render json: {result:'an error occurred'}, status: :internal_server_error
+                    end
+                rescue ActiveRecord::RecordNotFound
+                    render json: {result: 'user not found.'}, status: :not_found
+                end
+            rescue JWT::DecodeError
+                render json:{result:'invalid token'}, status: :forbidden
+            end
         end
     end
 
@@ -42,12 +65,12 @@ class UsersController < ApplicationController
             user = User.find(current_user)
             render json: {name: user.name, username: user.username, mail_confirmed: user.mail_confirmed}, status: :ok
         rescue ActiveRecord::RecordNotFound
-            render json: {result: 'user not found.'}
+            render json: {result: 'user not found.'}, status: :not_found
         end
     end
 
     private
         def userParams
-            params.require(:data).permit(:username, :name, :lastname, :password, :mail)
+            params.require(:data).permit(:username, :name, :lastname, :password, :mail, :confirmation_token)
         end
 end
