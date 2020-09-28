@@ -4,9 +4,9 @@
   "description": "Volt -Tweeter clone",
   "main": "index.js",
   "scripts": {
-    "build": "cd client && npm install && npm run build && cd ..",
-    "deploy": "cp -a client/build/. server/public/ && cd server",
-    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
+    "buildclient": "cd client && npm install && npm run build && cd ..",
+    "deploy": "cp -a client/build/. server/public/",
+    "postinstall": "npm run build && npm run deploy && echo 'Client built!' && cd server"
   },
   "repository": {
     "type": "git",
