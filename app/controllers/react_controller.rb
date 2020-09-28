@@ -1,5 +1,8 @@
 class ReactController < ApplicationController
+  include ActionController::MimeResponds
   def index
-    render :file => 'public/index.html'
+    respond_to do |format|
+      format.html { render body: Rails.root.join('public/index.html').read }
+    end
   end
 end
