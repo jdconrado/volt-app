@@ -1,0 +1,21 @@
+{
+  "name": "assignment-02-eshaik-jdconrado",
+  "version": "1.0.0",
+  "description": "Volt -Tweeter clone",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd client && npm install && npm run build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Departamento-de-sistemas-Uninorte/assignment-02-jdconrado-eshaik.git"
+  },
+  "author": "@jdconrado, @eshaik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Departamento-de-sistemas-Uninorte/assignment-02-jdconrado-eshaik/issues"
+  },
+  "homepage": "https://github.com/Departamento-de-sistemas-Uninorte/assignment-02-jdconrado-eshaik#readme"
+}
