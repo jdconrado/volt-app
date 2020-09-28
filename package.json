@@ -1,12 +1,14 @@
 {
-  "name": "assignment-02-eshaik-jdconrado",
+  "name": "assignment-02-jdconrado-eshaik",
   "version": "1.0.0",
-  "description": "Volt -Tweeter clone",
+  "description": "Volt - Twitter clone",
   "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
   "scripts": {
-    "buildclient": "cd client && npm install && npm run build && cd ..",
-    "deploy": "cp -a client/build/. server/public/",
-    "postinstall": "npm run build && npm run deploy && echo 'Client built!' && cd server"
+    "build": "cd client && npm install && npm run build && cd .. && cp -a client/build/. public/"
   },
   "repository": {
     "type": "git",
