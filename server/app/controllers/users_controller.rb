@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+    before_action :authorized, only: [:info]
     def create
         user = User.new(
             username: userParams[:username],
@@ -31,11 +33,16 @@ class UsersController < ApplicationController
     end
 
     def logout
-        #cookies.delete(:u_jwt)
-        if logged_in_user
-            render json: {user_id: logged_in_user}, status: :ok
-        else
-            render json: {user_id: 'Not logged in'}, status: :ok
+        cookies.delete(:u_jwt)
+        render status: :ok
+    end
+
+    def info
+        begin
+            user = User.find(current_user)
+            render json: {name: user.name, username: user.username, mail_confirmed: user.mail_confirmed}, status: :ok
+        rescue ActiveRecord::RecordNotFound
+            render json: {result: 'user not found.'}
         end
     end
 
