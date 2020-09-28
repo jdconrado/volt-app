@@ -1,4 +1,4 @@
 {
-    "API_URL": "https://volt-client.herokuapp.com/api",
+    "API_URL": "https://volt-webclient.herokuapp.com/api",
     "API_URL_TEST": "http://localhost:3001/api"
 }
