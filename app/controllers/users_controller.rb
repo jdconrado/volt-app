@@ -11,7 +11,7 @@ class UsersController < ApplicationController
         )
         if user.save
             token = JWT.encode({u_id: user.id, exp: Time.now.to_i + 24 * 3600}, 'MAILS3CR3T', 'HS256') #MAILSECRET
-            url = 'http://localhost:3000/confirmail?action=confirm&tkn='+token
+            url = 'https://volt-webclient.herokuapp.com/confirmail?action=confirm&tkn='+token
             UserMailer.with(user: user, url: url).confirmation_email.deliver_later
             render json: {result:'success'}, status: :created
         else
